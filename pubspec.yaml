@@ -37,6 +37,7 @@ dependencies:
   get: ^4.6.6
   intl: ^0.20.1
   flutter_form_builder: ^7.0.0-alpha.3
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
