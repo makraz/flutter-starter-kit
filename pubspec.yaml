@@ -51,6 +51,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   dotted_line: ^3.2.3
   dotted_border: ^2.1.0
+  lottie: ^3.3.0
 
 dev_dependencies:
   flutter_test:
