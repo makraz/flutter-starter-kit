@@ -57,6 +57,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   mockito: ^5.4.5
   flutter_native_splash: ^2.4.4
+  connectivity_plus: ^6.1.1
 
 dev_dependencies:
   flutter_test:
