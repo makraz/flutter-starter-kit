@@ -50,6 +50,7 @@ dependencies:
   envied: ^1.0.0
   flutter_screenutil: ^5.9.3
   dotted_line: ^3.2.3
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_test:
