@@ -55,6 +55,7 @@ dependencies:
   flutter_svg_provider: ^1.0.7
   flutter_dotenv: ^5.2.1
   jwt_decoder: ^2.0.1
+  mockito: ^5.4.5
 
 dev_dependencies:
   flutter_test:
