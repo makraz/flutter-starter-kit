@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widget/button.dart';
 import '../widget/input_text.dart';
 import '../widget/slider.dart';
+import '../widget/tabs_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -104,12 +105,36 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return _buildHomeContent();
       case 1:
-        return Center(
-          child: Text(
-            'Search Page',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        return  CustomTabsWidget(
+        tabTitles: ['Tab 1', 'Tab 2', 'Tab 3'],
+        tabContents: [
+          Center(
+            child: Text(
+              'Content of Tab 1',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
-        );
+          Center(
+            child: Text(
+              'Content of Tab 2',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+          Center(
+            child: Text(
+              'Content of Tab 3',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        ],
+        indicatorColor: Colors.red, 
+        selectedLabelColor: Colors.white, 
+        unselectedLabelColor: Colors.grey, 
+        tabHeight: 200.0, 
+        tabBarHeight: 50.0, 
+      
+    );
+  
       case 2:
         return Center(
           child: Text(
