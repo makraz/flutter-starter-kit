@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../widget/button.dart';
 import '../widget/input_text.dart';
+import '../widget/slider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,20 +35,55 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 16),
-            CustomTextFormField(
-              controller: TextEditingController(),
-              hintText: 'Enter your email',
-              prefixIcon: Icon(Icons.email_outlined),
-              textInputType: TextInputType.emailAddress,
-              textInputAction: TextInputAction.done,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Email is required';
-                }
-                return null;
-              },
-            )
-            ,
+          CarouselSlider(
+            items: List.generate(
+              5,
+              (index) => Container(
+                margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                decoration: BoxDecoration(
+                  color: Color(0xFF42A5F5)
+                      .withOpacity(0.1 * (index + 1)),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+                child: Center(
+                  child: Text(
+                    'Item ${index + 1}',
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+            height: 250.0, 
+            viewportFraction: 0.7, 
+            padding: const EdgeInsets.all(8.0), 
+            activeIndicatorColor: Colors.red, 
+            inactiveIndicatorColor:
+                Colors.black12, 
+            indicatorHeight: 12.0, 
+            indicatorWidth: 24.0, 
+            indicatorDuration: const Duration(
+                milliseconds: 500), 
+            autoSlide: true, 
+            autoSlideInterval: Duration(
+                seconds: 5), 
+          )
+
+          ,
+          SizedBox(height: 16),
+          CustomTextFormField(
+            controller: _textController,
+            hintText: 'Enter your email',
+            prefixIcon: Icon(Icons.email_outlined),
+            textInputType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.done,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Email is required';
+              }
+              return null;
+            },
+          ),
           SizedBox(height: 16),
           CustomElevatedButton(
             text: 'Submit',
