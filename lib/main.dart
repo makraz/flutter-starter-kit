@@ -39,6 +39,16 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Button(
+              label: Text('Button Demo Page'),
+              buttonType: ButtonType.elevated,
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const ButtonPage()),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            Button(
               label: Text('Text Field Demo Page'),
               buttonType: ButtonType.elevated,
               onPressed: () {
