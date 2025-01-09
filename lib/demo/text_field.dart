@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widget/text_field.dart';
 
 class TextFieldPage extends StatefulWidget {
@@ -25,11 +26,12 @@ class _TextFieldPageState extends State<TextFieldPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Demo TextField Page'),
+        title: const Text('TextField Demo'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFieldWidget(
               controller: _nameController,
@@ -37,8 +39,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
               labelText: "Name",
               textFieldType: TextFieldType.outlined,
             ),
-            const SizedBox(height: 20),
-
+            const SizedBox(height: 16),
             TextFieldWidget(
               controller: _emailController,
               hintText: "Enter your email",
@@ -46,7 +47,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
               prefixIcon: const Icon(Icons.email),
               textFieldType: TextFieldType.filled,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             TextFieldWidget(
               controller: _searchController,
@@ -55,8 +56,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
               suffixIcon: const Icon(Icons.search),
               textFieldType: TextFieldType.underlined,
             ),
-            const SizedBox(height: 20),
-
+            const SizedBox(height: 16),
             TextFieldWidget(
               controller: _passwordController,
               hintText: "Enter your password",
@@ -65,7 +65,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
               textFieldType: TextFieldType.outlined,
               obscureText: true,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             TextFieldWidget(
               controller: _addressController,
@@ -74,25 +74,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
               textFieldType: TextFieldType.filled,
               maxLines: 5,
             ),
-            const SizedBox(height: 20),
-
-            TextFieldWidget(
-              controller: _disabledController,
-              hintText: "This field is disabled",
-              labelText: "Disabled",
-              textFieldType: TextFieldType.outlined,
-              enabled: false,
-            ),
-            const SizedBox(height: 20),
-
-            TextFieldWidget(
-              controller: _readonlyController..text = "Read-only content",
-              hintText: "This field is read-only",
-              labelText: "Read-Only",
-              textFieldType: TextFieldType.outlined,
-              readOnly: true,
-            ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             TextFieldWidget(
               controller: _phoneNumberController,
@@ -100,31 +82,42 @@ class _TextFieldPageState extends State<TextFieldPage> {
               labelText: "Numeric Input",
               textFieldType: TextFieldType.underlined,
               keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
+            TextFieldWidget(
+              controller: _disabledController,
+              hintText: "This field is disabled",
+              labelText: "Disabled",
+              textFieldType: TextFieldType.outlined,
+              enabled: false,
+            ),
+            const SizedBox(height: 16),
+            TextFieldWidget(
+              controller: _readonlyController..text = "Read-only content",
+              hintText: "This field is read-only",
+              labelText: "Read-Only",
+              textFieldType: TextFieldType.outlined,
+              readOnly: true,
+            ),
+            const SizedBox(height: 16),
 
             TextFieldWidget(
               controller: _commentsController,
               hintText: "Enter your comments",
               labelText: "Comments",
               textFieldType: TextFieldType.filled,
-              maxLines: 3, 
+              maxLines: 3,
             ),
-            const SizedBox(height: 20),
-
-            TextFieldWidget(
+            const SizedBox(height: 16),
+           TextFieldWidget(
               controller: _feedbackController,
               hintText: "Custom styled input",
-              labelText: "Custom",
               textFieldType: TextFieldType.outlined,
-              style: const TextStyle(fontSize: 18, color: Colors.blue),
-              inputDecoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 2),
-                ),
-                hintStyle: TextStyle(color: Colors.grey),
-              ),
+              backgroundColor: Colors.grey,
+              borderColor: Colors.blue,
+              focusedBorderColor: Colors.red,
             ),
           ],
         ),
