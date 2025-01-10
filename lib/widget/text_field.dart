@@ -23,11 +23,10 @@ class TextFieldWidget extends StatelessWidget {
     this.enabled = true,
     this.readOnly = false,
     this.focusNode,
-    this.borderColor = Colors.black, 
+    this.borderColor,
     this.focusedBorderColor,
-    this.backgroundColor =   Colors.grey,
+    this.backgroundColor,
     this.inputFormatters,
-
   });
 
   final TextEditingController controller;
@@ -49,11 +48,10 @@ class TextFieldWidget extends StatelessWidget {
   final bool enabled;
   final bool readOnly;
   final FocusNode? focusNode;
-  final Color borderColor;
+  final Color? borderColor;
   final Color? focusedBorderColor;
   final Color? backgroundColor;
   final List<TextInputFormatter>? inputFormatters;
-
 
   @override
   Widget build(BuildContext context) {
@@ -93,87 +91,74 @@ class TextFieldWidget extends StatelessWidget {
     String? helperText,
     String? counterText,
   }) {
-    final Color effectiveFocusedBorderColor =
-        focusedBorderColor ?? Theme.of(context).colorScheme.primary;
+    final Color effectiveFocusedBorderColor = focusedBorderColor ?? Theme.of(context).colorScheme.primary;
 
-    final OutlineInputBorder outlinedBorderStyle = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8.0),
-      borderSide: BorderSide(
-        color: borderColor,
-        width: 1.0,
-      ),
-    );
-
-    final OutlineInputBorder focusedOutlinedBorderStyle = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(8.0),
-      borderSide: BorderSide(
-        color: effectiveFocusedBorderColor,
-        width: 2.0,
-      ),
-    );
-
-    final UnderlineInputBorder underlinedBorderStyle = UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: borderColor,
-        width: 1.0,
-      ),
-    );
-
-    final UnderlineInputBorder focusedUnderlinedBorderStyle =
-        UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: effectiveFocusedBorderColor,
-        width: 2.0,
-      ),
+    InputDecoration inputDecoration = InputDecoration(
+      hintText: hintText,
+      labelText: labelText,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      errorText: errorText,
+      helperText: helperText,
+      counterText: counterText,
+      border: InputBorder.none,
     );
 
     switch (textFieldType) {
       case TextFieldType.outlined:
-        return InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          errorText: errorText,
-          helperText: helperText,
-          counterText: counterText,
-          filled: true,
-          fillColor: backgroundColor,
+        final OutlineInputBorder outlinedBorderStyle = OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: borderColor ?? Theme.of(context).colorScheme.outline,
+            width: 1.0,
+          ),
+        );
+
+        final OutlineInputBorder focusedOutlinedBorderStyle = OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: BorderSide(
+            color: effectiveFocusedBorderColor,
+            width: 2.0,
+          ),
+        );
+
+        inputDecoration = inputDecoration.copyWith(
           border: outlinedBorderStyle,
           focusedBorder: focusedOutlinedBorderStyle,
           enabledBorder: outlinedBorderStyle,
           disabledBorder: outlinedBorderStyle,
         );
+
       case TextFieldType.filled:
-        return InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          errorText: errorText,
-          helperText: helperText,
-          counterText: counterText,
-          filled: true,
-          fillColor: backgroundColor,
+        inputDecoration = inputDecoration.copyWith(
           border: InputBorder.none,
-        );
-      case TextFieldType.underlined:
-        return InputDecoration(
-          hintText: hintText,
-          labelText: labelText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          errorText: errorText,
-          helperText: helperText,
-          counterText: counterText,
           filled: true,
-          fillColor: backgroundColor,
+          fillColor: backgroundColor ?? Theme.of(context).colorScheme.onInverseSurface,
+        );
+
+      case TextFieldType.underlined:
+        final UnderlineInputBorder underlinedBorderStyle = UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: borderColor ?? Theme.of(context).colorScheme.outline,
+            width: 1.0,
+          ),
+        );
+        final UnderlineInputBorder focusedUnderlinedBorderStyle = UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: effectiveFocusedBorderColor,
+            width: 2.0,
+          ),
+        );
+
+        inputDecoration = inputDecoration.copyWith(
           border: underlinedBorderStyle,
           focusedBorder: focusedUnderlinedBorderStyle,
           enabledBorder: underlinedBorderStyle,
           disabledBorder: underlinedBorderStyle,
         );
     }
+
+    return inputDecoration;
   }
 }
 
