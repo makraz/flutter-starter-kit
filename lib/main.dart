@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/demo/button.dart';
 
+import 'demo/text_field.dart';
 import 'widget/button.dart';
 
 void main() {
@@ -43,6 +44,16 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const ButtonPage()),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+            Button(
+              label: Text('Text Field Demo Page'),
+              buttonType: ButtonType.elevated,
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const TextFieldPage()),
                 );
               },
             ),
